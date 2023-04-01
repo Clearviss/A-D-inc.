@@ -1,8 +1,8 @@
-# Tytuł
+# A&D Studios
 
-Tekst wprowadzenia.
+We are a company that produces games and other software and tools.
 
-## Podtytuł
+## 
 
 Inny tekst.
 
@@ -17,7 +17,7 @@ Nieuporządkowana lista:
 - Drugi punkt
 - Trzeci punkt
 
-Zewnętrzny [link](https://woolgra.eu/) i [wewnętrzny link](Our game).
+Our latest game: [WoolGame](https://woolgra.eu/) 
 
 Podstawowa *kursywa* oraz **pogrubienie** tekstu.
 
