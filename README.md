@@ -1,2 +1,3 @@
 # klarownygit
 # zmiana
+# nigga
