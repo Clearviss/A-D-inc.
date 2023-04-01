@@ -1,7 +1,7 @@
 # A&D Studios
 We are a company that produces games and other software and tools.
 
-Jesteśmy bardzo zawzięci i zaangażowani w game development, i uwielbiamy wszelkie rzeczy związane z komputerami i programowaniem. Specjalizujemy się również w programowaniu mikrokontrolerów takich jak Arduino czy Rapsberry Pi. 
+We are very passionate and involved in game development, and love all things computer and programming related. We also specialise in programming microcontrollers such as Arduino and Rapsberry Pi. 
 ## Games
 Our latest game: [WoolGame](https://woolgra.eu/)
 ## Softwares
