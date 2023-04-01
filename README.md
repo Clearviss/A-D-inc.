@@ -1,5 +1,7 @@
 # Tytuł projektu
 
+<img src="72f67e00debd0fb7d616f1536514cd7c.jpg" alt="opis obrazka" width="50%">
+
 ![tyler](72f67e00debd0fb7d616f1536514cd7c.jpg)
 
 Opis projektu, cel i zastosowanie.
