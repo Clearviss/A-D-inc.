@@ -7,3 +7,4 @@ Our latest game: [WoolGame](https://woolgra.eu/)
 ## Softwares
 *Not yet*
 ### Our future plans
+We plan to conquer the games market by using and popularising innovative solutions and mechanics. We want to add an advanced AI system that will revolutionise our games which will stand out from other outdated gaming solutions. We also plan to create new solutions in electronics, such as the creation of a completely new key encryption, which will make hacking into user accounts border on the miraculous.
