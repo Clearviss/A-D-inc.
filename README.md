@@ -1,1 +1,2 @@
 # klarownygit
+# zmiana
