@@ -8,4 +8,4 @@ Check out the next major version of Koalageddon, currently in development, at th
 
 The informaion below is for version 1.
 
-🗜 Solution Projects
+🗜 Solution Projectss
