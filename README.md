@@ -1,5 +1,7 @@
 # Tytuł projektu
 
+![Opis obrazka](example.png)
+
 Opis projektu, cel i zastosowanie.
 
 ## Wymagania systemowe
