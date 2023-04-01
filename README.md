@@ -1,11 +1,31 @@
-🐨 Koalageddon 💥
-Legit DLC Unlocker for Steam, Epic, Origin, EA Desktop & Uplay (R1)
+# Tytuł projektu
 
-Welcome to the Koalageddon repository. For user-friendly introduction or support, please check out the official forum thread. This document is meant for software developers.
+Opis projektu, cel i zastosowanie.
 
-🆕 Version 2
-Check out the next major version of Koalageddon, currently in development, at this repository.
+## Wymagania systemowe
 
-The informaion below is for version 1.
+Opis wymagań systemowych, wymaganych narzędzi, bibliotek itp.
 
-🗜 Solution Projectss
+## Instalacja
+
+Kroki do instalacji i konfiguracji projektu.
+
+## Użycie
+
+Instrukcja użytkowania projektu, przykłady zastosowania, itp.
+
+## Testowanie
+
+Opis procedur testowania, wymagań dla testów, itp.
+
+## Wkładanie wkładów
+
+Opis procesu wkładania wkładów (pull requests), wytyczne, itp.
+
+## Autorzy i podziękowania
+
+Opis autorów, wkładu poszczególnych osób w projekt, podziękowania dla osób lub organizacji, które przyczyniły się do projektu.
+
+## Licencja
+
+Informacja o licencji projektu, ochronie praw autorskich, itp.
