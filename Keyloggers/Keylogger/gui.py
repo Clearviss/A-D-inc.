@@ -45,4 +45,4 @@ button = tk.Button(root, text="Uruchom keyloggera", command=start_keylogger)
 button.pack(pady=10)
 
 root.mainloop()
-#nigga
+
