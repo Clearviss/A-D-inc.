@@ -8,4 +8,4 @@ Our latest game: [WoolGame](https://woolgra.eu/)
 
 ### Softwares
 
-*Not yet*
+o*Not yet*
