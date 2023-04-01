@@ -1,6 +1,6 @@
 # Tytuł projektu
 
-![Opis obrazka](example.png)
+![tyler](72f67e00debd0fb7d616f1536514cd7c.jpg)
 
 Opis projektu, cel i zastosowanie.
 
