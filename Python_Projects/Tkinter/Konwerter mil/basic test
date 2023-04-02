@@ -1,0 +1,37 @@
+import tkinter as tk
+from tkinter import ttk
+
+def convert():
+    mile_input = entry_int.get()
+    km_output = mile_input * 1.61
+    output_string.set(km_output)
+
+window = tk.Tk()
+window.title("Test")
+window.geometry("500x250")
+
+title_label = ttk.Label(master = window,
+                        text = "Mile na kilometry",
+                        font = "Calibri 24 bold")
+title_label.pack()
+
+# input
+input_frame = ttk.Frame(master = window)
+entry_int = tk.IntVar()
+entry = ttk.Entry(master = input_frame)
+button = ttk.Button(master = input_frame,
+                    text = 'Konwertuj',
+                    command = convert)
+button.pack(side = 'right', padx = 10)
+entry.pack(side = 'right')
+input_frame.pack(pady = 10)
+
+# output
+output_string = tk.StringVar()
+output_label = ttk.Label(master = window,                        
+                        text = "Dane przekonwertowane",
+                        font = "Calibri 24", 
+                        textvariable = output_string)
+output_label.pack()
+
+window.mainloop()
