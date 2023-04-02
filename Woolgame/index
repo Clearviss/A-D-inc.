@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=’robots’ content=’index, follow’>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woolgame</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+      
+
+@keyframes animateBg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+}
+        body { 
+            background: linear-gradient(to top, rgba(103,54,57,1) 20%, rgba(71,82,93,1) 100%) fixed no-repeat;
+            color: whitesmoke;
+            font-size: x-large;
+            text-align: center;
+        }
+        .modal-content {
+            background-color: gray;
+        }
+        .selector-for-some-widget {
+  box-sizing: content-box;
+}
+        #canvas {
+            animation: animateBg 2s linear infinite;
+            border: 1px solid black;
+            
+            background: linear-gradient(to top, rgba(103,54,57,1), rgba(71,82,93,1), rgba(103,54,57,1), rgba(71,82,93,1));
+            background-size: 300% 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .wrapper {
+    display: flex;
+    align-items: stretch;
+    text-align: left;
+    float: left;
+    padding: 25px;
+}
+a {
+    text-decoration: none;
+}
+#buttonik {
+    margin: 25px;
+    float: right;
+}
+    </style>
+    
+</head>
+<body>
+    <header style="padding: 3.5%;">
+        <h1 style="opacity: 75%; letter-spacing: 6px;">WOOLGAME Alpha 0.01v</h1>
+    </header>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3 style="letter-spacing: 2px;">Socjale</h3>
+            </div>
+    
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#">Rzut groszem</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Linki</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="https://klubowicze.eu">Stronka Klubowa</a>
+                        </li>
+                        <li>
+                            <a href="https://malpiamuza.eu">Małpia Muza</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                
+                
+            </ul>
+        </nav>
+    
+    </div>
+    <canvas  id="canvas" width="800" height="600">
+        <script>
+            
+        // Inicjalizacja elementów gry
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var score = 0;
+        var lifes = 5;
+        var lost = false;
+        var jumpVar = 2;
+        var playerX = 50;
+        var playerY = 525;
+        var playerSpeed = 8;
+        var gravity = 0.05;
+        var jumping = false;
+        var jumpSpeed = 20;
+        var jumpSpeedCounter = 0;
+        var jumpHeight = 500;
+        var platformWidth = 100;
+        var platformHeight = 18;
+        var offsetY = 0;
+        var platforms = [
+            {id: 1,color:'red', x: 0, y: 550, width: canvas.width, height: platformHeight,points:1},
+            {id: 2,color:'green',x: 200, y: 450, width: platformWidth, height: platformHeight,points:1},
+            {id: 3,color:'green',x: 500, y: 350, width: platformWidth, height: platformHeight,points:1},
+            {id: 4,color:'green',x: 300, y: 250, width: platformWidth, height: platformHeight,points:1},
+            {id: 5,color:'green',x: 100, y: 150, width: platformWidth, height: platformHeight,points:1},
+        ];
+        // paralaxowy background
+        
+        const bglayer1 = new Image();
+        bglayer1.src = 'blurbg.png';
+        let y = 0;
+        let y2 = 600;
+        let y3 = -600;
+        //animowanie background
+        //gracz sprite
+        
+
+
+
+        // Funkcja rysująca grę
+        function draw() {
+            
+            // Czyszczenie ekranu
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.drawImage(bglayer1, 0,y);
+            ctx.drawImage(bglayer1, 0,y2);
+            
+            // Rysowanie platform
+            
+            
+for (var i = 0; i < platforms.length; i++) {
+    // Sprawdzenie, czy gracz znajduje się na danej platformie
+    
+    if (playerY + 25 >= platforms[i].y && playerY + 25 <= platforms[i].y + platforms[i].height && playerX + 25 >= platforms[i].x && playerX <= platforms[i].x + platforms[i].width) {
+      if (platforms[i].color=='green') {
+                      score+=platforms[i].points;
+                    }
+        platforms[i].color = 'red';
+        ctx.fillStyle = platforms[i].color; // zmiana koloru platformy na czerwony
+    } else {
+        
+        if (platforms[i].color=='red') {
+          ctx.fillStyle = 'red';
+        } else {
+        ctx.fillStyle = "#195715";
+        }
+    }
+    ctx.fillRect(platforms[i].x, platforms[i].y, platforms[i].width, platforms[i].height);
+}
+
+
+            // Rysowanie gracza
+            ctx.fillStyle = "aqua";
+            ctx.fillRect(playerX, playerY, 25, 25);
+
+            // Śledzenie gracza przez kamerę w górę
+            if (playerY < canvas.height / 3) {
+                for (var i = 0; i < platforms.length; i++) {
+                    platforms[i].y += canvas.height / 3 - playerY;
+                    if (y > 600) y = -600;
+            else y += 0.003; 
+            if (y2 > 600) y2 = -600;
+            else y2 += 0.003; 
+                }
+                playerY = canvas.height / 3;
+            }
+            
+
+            // Obsługa ruchu gracza
+            if (keys[37] && playerX > 0) { // Lewa strzałka
+                playerX -= playerSpeed;
+                
+            }
+            if (keys[39] && playerX < canvas.width - 25) { // Prawa strzałka
+                playerX += playerSpeed;
+                
+            }
+            // Obsługa grawitacji i skoku  
+            var onPlatform = false;
+            for (var i = 0; i < platforms.length; i++) {
+                if (playerY + 25 >= platforms[i].y && playerY + 25 <= platforms[i].y + platforms[i].height && playerX + 25 >= platforms[i].x && playerX <= platforms[i].x + platforms[i].width) {
+                    playerY = platforms[i].y - 25;
+                    jumping = false;
+                    onPlatform = true;
+                    if (score < 0 || lost) {
+                        lost = true;
+    ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("Przegrales ale to alpha wiec graj dalej ", 100,300); // wyświetl score w lewym górnym rogu ekranu
+}
+ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("+"+platforms[i].points ,playerX+50,playerY-50);
+                    break;
+                }
+            }
+            if (onPlatform) {
+                offsetY = 0;
+            }
+            if (!onPlatform) { 
+                offsetY += gravity;
+    playerY += offsetY;
+    
+// Zmiana pozycji kamery w przypadku, gdy gracz przekroczył górną ćwiartkę ekranu
+if (playerY > canvas.height) {
+        playerY = 0;
+    }
+if (playerY == 0) {
+    score-=400;
+}
+if (score < 0 || lost) {
+    lost = true;
+    ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("Przegrales ale to alpha wiec graj dalej ", 100,300); // wyświetl score w lewym górnym rogu ekranu
+}
+// Dodawanie nowych platform na górze ekranu w przypadku, gdy gracz znalazł się na ostatniej platformie
+var lastPlatform = platforms[platforms.length - 1];
+if (lastPlatform.y < offsetY + canvas.height) {
+
+var newPlatformX = Math.floor(Math.random() * (canvas.width - 100));
+while (newPlatformX < lastPlatform.x - 300 || newPlatformX > lastPlatform.x + 300) {
+  var newPlatformX = Math.floor(Math.random() * (canvas.width - 100));
+}
+var newPlatformY = lastPlatform.y - Math.floor(Math.random() * 150) - 50;
+var newPlatformWidth = Math.floor(Math.random() * 50) + 100;
+var newID = lastPlatform.id + 1;
+platforms.push({
+id: newID,
+color:'green',
+x: newPlatformX,
+y: newPlatformY,
+width: newPlatformWidth,
+height: 18,
+points: Math.floor(Math.random() * 10) + 1 // punkty za platformę (losowa wartość od 1 do 10)
+});
+}
+
+}  if (keys[32] && !jumping && onPlatform) { // Spacja
+        jumping = true;
+        jumpStart = playerY;
+        jumpSpeedCounter = jumpSpeed;
+        offsetY = 0;
+        
+    }
+
+    if (jumping) {
+        playerY -= jumpSpeedCounter;
+        jumpSpeedCounter -= 1;
+        if (jumpSpeedCounter == 0) {
+            jumping = false;
+        }
+        
+    }
+    ctx.fillStyle = "black";
+ctx.font = "30px Arial";
+ctx.fillText("Ilość zebranej Woolny: " + score, 10, 30); // wyświetl score w lewym górnym rogu ekranu
+
+// Wywołanie funkcji draw w każdej klatce animacji
+requestAnimationFrame(draw);
+}
+
+// Obsługa klawiatury
+var keys = {};
+window.addEventListener("keydown", function(e) {
+keys[e.keyCode] = true;
+});
+window.addEventListener("keyup", function(e) {
+keys[e.keyCode] = false;
+});
+
+// Uruchomienie gry
+
+draw();
+</script>
+    </canvas>
+    
+    <!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-end" id="demo">
+    <div class="offcanvas-header">
+      <h1 class="offcanvas-title">Dodatki</h1>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <hr class="offcanvasNavbar">
+    <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Launch demo modal 1 
+                  </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                    Launch demo modal
+                  </button>
+              </li>
+             
+          </ul>
+    </div>
+  </div>
+  
+  <!-- Button to open the offcanvas sidebar -->
+  <button id="buttonik" class="btn btn-secondary " type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" aria-label="Toggle navigation" aria-controls="offcanvasNavbar">
+    <h2><i class="bi bi-list "></i></h2>   Dodatki
+  </button>
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <nav class="nav navbar-expand-sm navbar-dark bg-dark fixed-bottom justify-content-center  " style="opacity: 100%;">
+      <a class="nav-link active" href="index.html" aria-current="page" style="opacity: 100%;color:white">Woolgame</a>
+      <a class="nav-link" href="historia.html" style="color:white">Historia</a>
+      <a class="nav-link " href="cel.html" style="color: white;">Cel gry</a>
+      <a class="nav-link " href="poradnik.html" style="color: white;">Jak grać</a>
+    </nav>
+</body>
+</html>
+
