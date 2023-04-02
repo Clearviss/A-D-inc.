@@ -4,6 +4,24 @@
     {
         static void Main(string[] args)
         {
+            majn2();
+
+            Console.ReadLine();  
+            
+            
+            
+        }
+
+        
+        static object majn2()
+        {
+            Class1 adrian = new Class1("1","Rogulak", 17, true, 3.2);
+            Class1 adrian2 = new Class1("2","Nie rogulski", 13, false, 1.0);
+            Class1 adrian3 = new Class1("3","Excelente", 25, true, 5);
+            return adrian;
+        }
+        static void majn()
+        {
             Console.WriteLine("podaj liczbe limit 100000");
             string input = Console.ReadLine();
             int liczba;
@@ -26,7 +44,7 @@
                         }
                         reszta = liczba - i;
                     }
-                    
+
                     Console.WriteLine("liczby wypisane, dopisz kolejne reszta: ");
                     Console.WriteLine(reszta);
                     input = Console.ReadLine();
@@ -37,10 +55,6 @@
                     break;
                 }
             }
-           
-            
-            
-            
         }
     }
 }
