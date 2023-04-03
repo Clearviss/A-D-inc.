@@ -1,4 +1,4 @@
-<img src="Stuff/logo.png" alt="a&dlogo" width="100%">
+<img src="Stuff/logo.png" alt="a&dlogo" width="150%">
 
 # A&D Studios
 We are a company that produces games and other software and tools.
