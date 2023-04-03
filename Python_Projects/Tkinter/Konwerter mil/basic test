@@ -1,37 +1,36 @@
 import tkinter as tk
-from tkinter import ttk
 
-def convert():
-    mile_input = entry_int.get()
-    km_output = mile_input * 1.61
-    output_string.set(km_output)
+# Funkcja konwertująca mile na kilometry
+def convert_miles_to_km():
+    try:
+        miles = float(miles_entry.get())
+        km = miles * 1.60934
+        km_result_label.config(text=f"{km:.2f} km")
+    except ValueError:
+        km_result_label.config(text="Wprowadź poprawną wartość!")
 
+# Utworzenie okna programu
 window = tk.Tk()
-window.title("Test")
+window.title("Konwerter")
 window.geometry("500x250")
+window.config(bg= "black")
 
-title_label = ttk.Label(master = window,
-                        text = "Mile na kilometry",
-                        font = "Calibri 24 bold")
-title_label.pack()
+# Utworzenie widgetów interfejsu użytkownika
+header_label = tk.Label(text="Konwerter mil na kilometry", font = 'Calibri 24 bold', bg="#f1f1f1")
+miles_label = tk.Label(text="Liczba mil:", font=("Arial", 14), bg="#f1f1f1")
+miles_entry = tk.Entry(width=10, font=("Arial", 14))
+convert_button = tk.Button(text="Konwertuj", command=convert_miles_to_km, font=("Arial", 14), bg="#4CAF50", fg="white", bd=0, padx=20, pady=10, activebackground="#3e8e41")
+km_result_label = tk.Label(text="0 km", font=("Arial", 14), bg="#f1f1f1")
 
-# input
-input_frame = ttk.Frame(master = window)
-entry_int = tk.IntVar()
-entry = ttk.Entry(master = input_frame)
-button = ttk.Button(master = input_frame,
-                    text = 'Konwertuj',
-                    command = convert)
-button.pack(side = 'right', padx = 10)
-entry.pack(side = 'right')
-input_frame.pack(pady = 10)
+# Umieszczenie widgetów w oknie
+header_label.pack(pady=20)
+header_label.config(bg= "grey")
+miles_label.pack(pady=10)
+miles_label.config(bg= "grey")
+miles_entry.pack()
+convert_button.pack(pady=20)
+convert_button.config(bg= "green")
+km_result_label.pack()
 
-# output
-output_string = tk.StringVar()
-output_label = ttk.Label(master = window,                        
-                        text = "Dane przekonwertowane",
-                        font = "Calibri 24", 
-                        textvariable = output_string)
-output_label.pack()
-
+# Uruchomienie głównej pętli programu
 window.mainloop()
