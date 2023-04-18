@@ -21,10 +21,21 @@ routes = [
     ["SFO", "DSM"],
     ["SAN", "EYW"]
 ]
-
+print('Lista dostepnych lotnisk: ')
+for x in airports:
+    print(x, end=', ')
+print(" ")
+print("a to wszystkie mozliwe połączenia: ")
+for x in routes:
+    print(f"{x[0]} - {x[1]}")
+print('Podaj alias lotniska na którym się znajdujesz: ')
 start = input()
-destination = "LHR"
+print('Podaj alias lotniska na które chcesz się dostać: ')
+destination = input()
 t = False
+loty = 0
+lotyy = []
+lotyy.append(start)
 
 while(start!=destination):
     for key in routes:
@@ -32,15 +43,18 @@ while(start!=destination):
             if x==start:
                 if start == key[1]:
                     start = key[0]
-                    
-                    print(start)
+                    loty+=1
+                    lotyy.append(start)
                 else:
                     start = key[1]
-                
-                    
-                    print(start)
+                    loty+=1
+                    lotyy.append(start)
                     t = True
                     break
+print(f"Musisz dokonać {loty} lotów. lista przesiadek: ")
+for x in lotyy:
+    print(x) 
+
 
 if t==False:
     print('nie ma pary')
