@@ -1,11 +1,13 @@
 # it needs pillow python library
 import os
-import PIL 
+from PIL import Image, ImageEnhance, ImageFilter
 
 path = "./imgs"
 pathout = "/pyimgs"
 
 for filename in os.listdir(path):
+    if filename == ".DS_Store":
+        continue
     img = Image.open(f"{path}/{filename}")
     edit = img.filter(ImageFilter.SHARPEN).convert('L')
 
