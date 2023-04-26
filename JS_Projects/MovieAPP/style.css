@@ -9,3 +9,13 @@ body {
 img {
     height: 600px;
 }
+
+h3 {
+    color: white;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #131720;
+    padding: 10px;
+}
