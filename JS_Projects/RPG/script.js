@@ -1,10 +1,29 @@
 let xp = 0;
 let health = 100;
-let gold = 50;
+let gold = 50000;
+let WeaponPrice = 30;
 let currentWeapon = 0;
 let fighting;
 let monterHealth;
-let inventory = ["stick"];
+let inventory = []
+let weapons = [
+    {
+        name:"stick",
+        power: 5
+    },
+    {
+        name:"batton",
+        power: 10
+    },
+    {
+        name:"dagger",
+        power: 20
+    },
+    {
+        name:"Zweihander",
+        power: 40
+    },
+];
 let locations = [{
     name: "Town Square",
     "button_text": ["Go to store", "Go to cave", "Fight dragon"],
@@ -21,7 +40,7 @@ let locations = [{
  {
     name: "Cave",
     "button_text": ["Fight Slime", "Fight Skeleton", "Go Back to Town Square"],
-    "button_func": [fight, fight, goTown],
+    "button_func": [fightSlime, fightBeast, goTown],
     text: "You are in Cave surrounded by monsters"
  }
 ]
@@ -65,11 +84,31 @@ function fightDragon() {
     
 }
 function buyHealth() {
-
+    if (gold>=10)
+    {
+        gold -= 10
+        health+=10
+        goldText.innerText = gold
+        healthText.innerText = health
+    
+    }
+        else{text.innerText = "You don't have enough gold!"}
 }
 function buyWeapon() {
+    if (gold>=WeaponPrice) {
+        gold -= WeaponPrice;
+        WeaponPrice*=2
+        currentWeapon++
+        goldText.innerText = gold;
+        let newWeapon = weapons[currentWeapon].name
+        text.innerText = "You now have a new weapon: "+newWeapon;
+
+
+    }
+}
+function fightSlime() {
 
 }
-function fight() {
+function fightBeast() {
 
 }
