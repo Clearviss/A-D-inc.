@@ -5,3 +5,7 @@ body {
     background-color: #131720;
     font-family: sans-serif;
 }
+
+img {
+    height: 600px;
+}
