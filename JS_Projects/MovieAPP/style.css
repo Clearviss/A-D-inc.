@@ -6,7 +6,9 @@ body {
     font-family: sans-serif;
 }
 
-
+img {
+    height: 600px;
+}
 
 h3 {
     color: white;
