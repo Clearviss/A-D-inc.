@@ -1,5 +1,5 @@
 import mongodb from "mongodb";
-const ObjectID = mongodb.ObjectID
+const ObjectId = mongodb.ObjectID
 
 let reviews
 
@@ -33,7 +33,7 @@ export default class ReviewsDA0 {
 
     static async getReview(reviewId) {
         try {
-           return await reviews.findOne({_id: ObjectID(reviewId)})
+           return await reviews.findOne({_id: ObjectId(reviewId)})
         } catch (e) {
            console.error(`Unable to get review: ${e}`)
             return {error: e}
@@ -44,7 +44,7 @@ export default class ReviewsDA0 {
     static async updateReview(reviewId, user, review) {
         console.log("rev", reviewId)
         try {
-            const updateResponse = await reviews.updateOne({_id: ObjectID(reviewId)}, {$set: {user: user, review: review}})
+            const updateResponse = await reviews.updateOne({_id: ObjectId(reviewId)}, {$set: {user: user, review: review}})
             return updateResponse
         } catch (e) {
             console.error(`unable to update post: ${e}`)
@@ -53,7 +53,7 @@ export default class ReviewsDA0 {
 
     static async deleteReview(reviewId) {
         try {
-            const deleteResponse = await reviews.deleteOne({_id: ObjectID(reviewId)})
+            const deleteResponse = await reviews.deleteOne({_id: ObjectId(reviewId)})
             return deleteResponse
         } catch (e) {
             console.error(`unable to delete review: ${e}`)

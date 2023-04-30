@@ -21,6 +21,9 @@ MongoClient.connect(
 }).then(async client => {
     await ReviewsDA0.injectDB(client)
     app.listen(port, () => {
+    
         console.log(`listening on port ${port}`)
+    
+        
     })
 })
