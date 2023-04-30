@@ -23,7 +23,7 @@ export default class ReviewsController {
       let id = req.params.id || {}
       let review = await ReviewsDAO.getReview(id)
       if (!review) {
-        res.status(404).json({ error: "Not found" })
+        res.status(404).json({ error: "nie ma bulgary ukradly" })
         return
       }
       res.json(review)
@@ -77,7 +77,7 @@ export default class ReviewsController {
       let id = req.params.id || {}
       let reviews = await ReviewsDAO.getReviewsByMovieId(id)
       if (!reviews) {
-        res.status(404).json({ error: "Not found" })
+        res.status(404).json({ error: "bulgary ukradly" })
         return
       }
       res.json(reviews)
