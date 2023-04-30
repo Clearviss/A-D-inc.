@@ -33,10 +33,40 @@ export default class ReviewsDA0 {
 
     static async getReview(reviewId) {
         try {
-           return await reviews.findOne({_id: ObjectId(reviewId)})
+           return await reviews.findOne({_id: ObjectID(reviewId)})
         } catch (e) {
            console.error(`Unable to get review: ${e}`)
-           
+            return {error: e}
+        }
+    }
+
+
+    static async updateReview(reviewId, user, review) {
+        console.log("rev", reviewId)
+        try {
+            const updateResponse = await reviews.updateOne({_id: ObjectID(reviewId)}, {$set: {user: user, review: review}})
+            return updateResponse
+        } catch (e) {
+            console.error(`unable to update post: ${e}`)
+        }
+    }
+
+    static async deleteReview(reviewId) {
+        try {
+            const deleteResponse = await reviews.deleteOne({_id: ObjectID(reviewId)})
+            return deleteResponse
+        } catch (e) {
+            console.error(`unable to delete review: ${e}`)
+        }
+    }
+
+    static async getReviewsByMovieId(movieId) {
+        try {
+            const cursor = await reviews.find({movieId: parseInt(movieId)})
+            return cursor.toArray()
+        } catch (e) {
+            console.error(`Unable to get review: ${e}`)
+            return {error: e}
         }
     }
 }
