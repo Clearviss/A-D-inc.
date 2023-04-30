@@ -1,6 +1,6 @@
 import app from "./server.js";
 import mongodb from "mongodb"
-import ReviewsDA0 from "./dao/reviewsDA0.js"
+// import ReviewsDA0 from "./dao/reviewsDA0.js"
 
 const MongoClient = mongodb.MongoClient
 const mongo_username = "domi500domi"
@@ -11,7 +11,7 @@ const port = 8000
 
 MongoClient.connect(
     uri, {
-        maxPoolSizeL: 50,
+        maxPoolSize: 50,
         wtimeoutMS: 2500,
         useNewUrlParser: true
     }
