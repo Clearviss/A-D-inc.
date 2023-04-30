@@ -1,6 +1,6 @@
 import app from "./server.js";
 import mongodb from "mongodb"
-// import ReviewsDA0 from "./reviewsDA0.js"
+import ReviewsDA0 from "./reviewsDA0.js"
 
 const MongoClient = mongodb.MongoClient
 const mongo_username = "domi500domi"
@@ -19,7 +19,7 @@ MongoClient.connect(
     console.error(err.stack)
     process.exit(1)
 }).then(async client => {
-    await ReviewsDA0.injectDB
+    await ReviewsDA0.injectDB(client)
     app.listen(port, () => {
         console.log(`listening on port ${port}`)
     })

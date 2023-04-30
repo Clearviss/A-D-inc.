@@ -1,4 +1,4 @@
-import ReviewsDAO from "../dao/reviewsDAO.js"
+import ReviewsDA0 from "./reviewsDA0.js"
 
 export default class ReviewsController {
   static async apiPostReview(req, res, next) {
@@ -7,7 +7,7 @@ export default class ReviewsController {
       const review = req.body.review
       const user = req.body.user
       console.log('movieid', movieId)
-      const reviewResponse = await ReviewsDAO.addReview(
+      const reviewResponse = await ReviewsDA0.addReview(
         movieId,
         user,
         review
@@ -21,7 +21,7 @@ export default class ReviewsController {
   static async apiGetReview(req, res, next) {
     try {
       let id = req.params.id || {}
-      let review = await ReviewsDAO.getReview(id)
+      let review = await ReviewsDA0.getReview(id)
       if (!review) {
         res.status(404).json({ error: "nie ma bulgary ukradly" })
         return
@@ -39,7 +39,7 @@ export default class ReviewsController {
       const review = req.body.review
       const user = req.body.user
 
-      const reviewResponse = await ReviewsDAO.updateReview(
+      const reviewResponse = await ReviewsDA0.updateReview(
         reviewId,
         user,
         review
@@ -65,7 +65,7 @@ export default class ReviewsController {
   static async apiDeleteReview(req, res, next) {
     try {
       const reviewId = req.params.id
-      const reviewResponse = await ReviewsDAO.deleteReview(reviewId)
+      const reviewResponse = await ReviewsDA0.deleteReview(reviewId)
       res.json({ status: "success" })
     } catch (e) {
       res.status(500).json({ error: e.message })
@@ -75,7 +75,7 @@ export default class ReviewsController {
   static async apiGetReviews(req, res, next) {
     try {
       let id = req.params.id || {}
-      let reviews = await ReviewsDAO.getReviewsByMovieId(id)
+      let reviews = await ReviewsDA0.getReviewsByMovieId(id)
       if (!reviews) {
         res.status(404).json({ error: "bulgary ukradly" })
         return
