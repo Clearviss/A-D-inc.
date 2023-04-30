@@ -3,7 +3,7 @@ import ReviewsDA0 from "./reviewsDA0.js"
 export default class ReviewsController {
   static async apiPostReview(req, res, next) {
     try {
-      const movieId = parseInt(req.body.movieId)
+      const movieId = req.body.movieId
       const review = req.body.review
       const user = req.body.user
       console.log('movieid', movieId)
