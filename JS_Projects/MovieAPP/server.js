@@ -1,6 +1,6 @@
 import express from "express"
 import cors from 'cors'
-import review from './api/reviews.route.js'
+import review from './reviews.route.js'
 
 const app = express()
 

@@ -9,4 +9,17 @@ const uri = `mongodb+srv://${mongo_username}:${mongo_password}@cluster0.2gaefcb.
 
 const port = 8000
 
-MongoClient.connect
+MongoClient.connect(
+    uri, {
+        maxPoolSizeL: 50,
+        wtimeoutMS: 2500,
+        useNewUrlParser: true
+    }
+).catch(err => {
+    console.error(err.stack)
+    process.exit(1)
+}).then(async client => {
+    app.listen(port, () => {
+        console.log(`listening on port ${port}`)
+    })
+})
